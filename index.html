@@ -4,10 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Library</title>
 </head>
 <body>
-    <h1>This is a heading</h1>
+    <div class="wrapper">
+        <h1 class="title-1">Library</h1>
+        <button class="btn btn-add-book">Add Book</button>
+        <table id="books">
+            <tr class="table-header">
+                <th></th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+                <th></th>
+            </tr>
+            <!-- <tr data-book-number class="table-item">
+                <td  class="delete"><button class="btn-delete-book">x</button> </td>
+                <td>Digital Minimalism</td>
+                <td>Cal Newport</td>
+                <td class="small-table-item">235</td>
+                <td class="small-table-item">Read</td>
+                <td><input checked type="checkbox" name="read-status" id="read-status"></td>
+            </tr>
+            <tr data-book-number class="table-item">
+                <td class="delete"><button class="btn-delete-book">x</button> </td>
+                <td>Influence: The Psychology of Persuasion</td>
+                <td>Robert Caldini</td>
+                <td class="small-table-item">287</td>
+                <td class="small-table-item">Read</td>
+                <td><input checked type="checkbox" name="read-status" id="read-status"></td>
+            </tr> -->
+        </table>
+    </div>
+    <div class="modal hidden">
+        <h1 class="title-2">Add Book</h1>
+        <form class="submit-book" action="#">
+            <div class="submit-book--item">
+                <label for="title">Title: </label>
+                <input required type="text" name="title" id="title">
+            </div>
+            <div class="submit-book--item">
+                <label for="author">Author: </label>
+                <input required type="text" name="author" id="author">
+            </div>
+            <div class="submit-book--item">
+                <label for="pages">Pages: </label>
+                <input type="number" name="pages" id="pages">
+            </div>
+            <div class="submit-book--item checkbox">
+                <label for="read">Read: </label>
+                <label class="checkbox-label" for="read">
+                    <input type="checkbox" name="read" id="read">
+                    <span class="checkbox-custom"></span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
     <script src="./app.js"></script>
 </body>
 </html>
