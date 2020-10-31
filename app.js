@@ -83,7 +83,7 @@ function displayBooks(){
 console.log(myLibrary.length);
 console.log(table);
 
-if(JSON.parse(localStorage.getItem('myLibrary')).length !== 0){
+if(localStorage.getItem('myLibrary') && JSON.parse(localStorage.getItem('myLibrary')).length !== 0){
     displayBooks();
 }else {
     // remove table if it's empty
