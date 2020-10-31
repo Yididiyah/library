@@ -45,7 +45,6 @@ function readStatus(status){
 
 function removeTableIfEmpty(){
     if(myLibrary.length === 0){
-        console.log('Table empty, should be removed');
         table.style.display = 'none';
     }else {
         table.style.display = 'table';
@@ -72,7 +71,7 @@ function addNewBookToTable(index, title, author, pages, read){
 // addBookToLibrary('Naked Economics', 'Charles Wheelan', 260, true);
 
 function displayBooks(){
-    // TODO: Read library from local storage
+    // Read library from local storage
     myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
     // Loop through the array and displays each book on the page
     myLibrary.forEach((book) => {
@@ -80,19 +79,15 @@ function displayBooks(){
         addNewBookToTable(myLibrary.indexOf(book) ,title, author, pages, read);
     })
 }
-console.log(myLibrary.length);
-console.log(table);
 
 if(localStorage.getItem('myLibrary') && JSON.parse(localStorage.getItem('myLibrary')).length !== 0){
     displayBooks();
 }else {
     // remove table if it's empty
     removeTableIfEmpty();
-    console.log('No books in local storage');
 }
 
 const rows = document.querySelectorAll('.table-item');
-console.log(rows);
 
 function closeModal() {
     overlay.classList.add('hidden');
@@ -120,7 +115,6 @@ function deleteBook(num){
     const elem = tableBody.querySelector(`tr[data-book-number='${num}']`);
     removeTableIfEmpty();
     tableBody.removeChild(elem);
-    console.log('Delete Book Number' , num);
 }
 
 function bookEventListener(row){
@@ -133,9 +127,6 @@ function bookEventListener(row){
             deleteBtn.addEventListener('click', deleteBookHandler = () => {
                 deleteBook(bookItemNumber, deleteBtn);
             });
-            // console.log('Hovered over row', row);
-            // console.dir(e.currentTarget.dataset);
-            // console.log(e.currentTarget.dataset.bookNumber);
         });
         row.addEventListener('mouseleave', (e) => {
         // When the mouse leaves hide the delete button and remove the event listener
@@ -149,7 +140,7 @@ function bookEventListener(row){
 }
 
 function readStatusListener(chkBox) {
-    //TODO: Update read status of books based on the checkbox state
+    //Update read status of books based on the checkbox state
     chkBox.addEventListener('change', function() {
         // Update myLibrary and UI table based on changed state
         myLibrary[this.parentElement.parentElement.dataset.bookNumber] = this.checked;
@@ -212,7 +203,6 @@ function init() {
             inputPages.value,
             inputRead.value
             );
-        console.log('Submitted');
         clearForm();
     });
     rows.forEach((row) => {
