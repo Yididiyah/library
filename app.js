@@ -126,6 +126,7 @@ function bookEventListener(row){
             
             deleteBtn.addEventListener('click', deleteBookHandler = () => {
                 deleteBook(bookItemNumber, deleteBtn);
+                removeTableIfEmpty();
             });
         });
         row.addEventListener('mouseleave', (e) => {
@@ -143,7 +144,9 @@ function readStatusListener(chkBox) {
     //Update read status of books based on the checkbox state
     chkBox.addEventListener('change', function() {
         // Update myLibrary and UI table based on changed state
-        myLibrary[this.parentElement.parentElement.dataset.bookNumber] = this.checked;
+        myLibrary[this.parentElement.parentElement.dataset.bookNumber].read = this.checked;
+        // update the local storage with the new value
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
         this.parentElement.previousElementSibling.textContent =  readStatus(this.checked);
     });
 }
@@ -192,7 +195,7 @@ function init() {
         addNewBookToTable(newBookNumber,inputTitle.value, 
             inputAuthor.value,
             inputPages.value,
-            inputRead.value
+            inputRead.checked
             );
         const newBookRow = document.querySelector(`tr[data-book-number='${newBookNumber}']`);
         bookEventListener(newBookRow);
@@ -201,7 +204,7 @@ function init() {
             inputTitle.value, 
             inputAuthor.value,
             inputPages.value,
-            inputRead.value
+            inputRead.checked
             );
         clearForm();
     });
@@ -211,14 +214,6 @@ function init() {
     chkReadStatus.forEach((chkBox) => {
         readStatusListener(chkBox);
     });
-
-    if (storageAvailable('localStorage')) {
-        // Yippee! We can use localStorage awesomeness
-
-    }
-      else {
-        // Too bad, no localStorage for us
-      }
 }
 
 // window.addEventListener('load', init);
