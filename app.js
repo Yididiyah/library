@@ -16,20 +16,36 @@ const chkReadStatus = document.querySelectorAll('#read-status');
 let myLibrary = [];
 let deleteBookHandler;
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+class Book {
+    constructor(){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read yet'}`
-}
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read yet'}`
+    }
 
-Book.prototype.toggleReadStatus = function() {
-    this.read = this.read ? false : true;
+    toggleReadStatus() {
+        this.read = this.read ? false : true;
+    }
 }
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+
+// Book.prototype.info = function() {
+//     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'read' : 'not read yet'}`
+// }
+
+// Book.prototype.toggleReadStatus = function() {
+//     this.read = this.read ? false : true;
+// }
 function addBookToLibrary(title, author, pages, read){
     // Takes user input and store the new book objects into an array
     myLibrary.push(new Book(title, author, pages, read));
